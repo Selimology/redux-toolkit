@@ -12,6 +12,7 @@ const PostsExcerpt = ({ post }) => {
         <TimeAgo timestamp={post.date} />
       </p>
       <ReactionButtons post={post} />
+        
     </article>
   );
 };

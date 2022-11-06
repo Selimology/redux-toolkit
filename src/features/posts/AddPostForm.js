@@ -14,9 +14,7 @@ const AddPostForm = () => {
 
   const users = useSelector(selectAllUsers);
 
-  const onTitleChanged = (e) => setTitle(e.target.value);
-  const onContentChanged = (e) => setContent(e.target.value);
-  const onAuthorChanged = (e) => setUserId(e.target.value);
+  // const canSave = Boolean(title) && Boolean(content) && Boolean(userId);
 
   const canSave =
     [title, content, userId].every(Boolean) && addRequestStatus === 'idle';
@@ -30,13 +28,17 @@ const AddPostForm = () => {
         setTitle('');
         setContent('');
         setUserId('');
-      } catch (err) {
-        console.error('Failed to save the post', err);
+      } catch (error) {
+        console.log('Failed to save the post', error);
       } finally {
         setAddRequestStatus('idle');
       }
     }
   };
+
+  const onTitleChanged = (e) => setTitle(e.target.value);
+  const onContentChanged = (e) => setContent(e.target.value);
+  const onAuthorChanged = (e) => setUserId(e.target.value);
 
   const usersOptions = users.map((user) => (
     <option key={user.id} value={user.id}>
